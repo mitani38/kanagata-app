@@ -26,6 +26,12 @@ export default function Sidebar() {
       >
         ホーム
       </Link>
+      <Link
+        href="/events"
+        className={`sidebar-item${pathname === "/events" ? " active" : ""}`}
+      >
+        イベント
+      </Link>
       {pages.map((page) => (
         <Link
           key={page.id}

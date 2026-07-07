@@ -13,19 +13,28 @@ export default function Sidebar() {
   useEffect(() => {
     fetch("/api/pages")
       .then((r) => r.json())
-      .then(setPages)
+      .then((data) => {
+        if (Array.isArray(data)) setPages(data);
+      })
       .catch(() => {});
   }, []);
 
   return (
     <nav className="sidebar">
-      <div className="sidebar-section-title">ページ</div>
+      <div className="sidebar-section-title">メニュー</div>
       <Link
         href="/"
         className={`sidebar-item${pathname === "/" ? " active" : ""}`}
       >
         ホーム
       </Link>
+      <Link
+        href="/allowance"
+        className={`sidebar-item${pathname === "/allowance" ? " active" : ""}`}
+      >
+        お小遣い管理
+      </Link>
+      <div className="sidebar-section-title" style={{ marginTop: 12 }}>ページ</div>
       {pages.map((page) => (
         <Link
           key={page.id}
